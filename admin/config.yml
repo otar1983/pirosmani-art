@@ -2,8 +2,8 @@ backend:
   name: github
   repo: otar1983/pirosmani-art
   branch: main
-  # ⬇️ Cloudflare auth worker-ის მისამართი (ნაბიჯ 6-ზე შევქმნით)
-  base_url: https://AUTH-WORKER-SUBDOMAIN.workers.dev
+  # ავტორიზაცია მუშაობს იმავე საიტზე (Vercel serverless ფუნქციებით)
+  base_url: https://pirosmani-art.vercel.app
 
 # ენა ადმინ-პანელში
 locale: ka
