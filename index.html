@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PirosmaniArt — ფერადი ნახატები პატარებისთვის</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+Georgian:wght@400;500;600;700&display=swap');
+
+  :root {
+    --bg: #fff8ec;
+    --ink: #3a2e4f;
+    --pink: #ff6fab;
+    --yellow: #ffc83d;
+    --teal: #3ec9c0;
+    --purple: #9b6dff;
+    --orange: #ff8a4c;
+    --green: #5fb83d;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Noto Sans Georgian', sans-serif;
+    font-weight: 500;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1,h2,h3,.logo,.btn { font-family: 'Baloo 2', 'Noto Sans Georgian', cursive; }
+
+  body::before {
+    content:''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(255,111,171,0.12), transparent 25%),
+      radial-gradient(circle at 88% 15%, rgba(62,201,192,0.14), transparent 22%),
+      radial-gradient(circle at 75% 80%, rgba(155,109,255,0.12), transparent 25%),
+      radial-gradient(circle at 20% 85%, rgba(255,200,61,0.14), transparent 22%);
+  }
+
+  header {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 6vw;
+    background: rgba(255,248,236,0.9);
+    backdrop-filter: blur(8px);
+  }
+  .logo { font-size: 1.9rem; font-weight: 800; color: var(--pink); }
+  .logo span:nth-child(2){color:var(--teal)}
+  .logo span:nth-child(3){color:var(--purple)}
+  .logo span:nth-child(4){color:var(--orange)}
+  nav { display: flex; align-items: center; }
+  nav a { color: var(--ink); text-decoration: none; margin-left: 28px; font-weight: 600; transition: color 0.2s; }
+  nav a:hover { color: var(--pink); }
+  .cart-btn {
+    background: var(--yellow); border: none; padding: 10px 22px; border-radius: 50px;
+    font-family: 'Baloo 2'; font-weight: 700; font-size: 1rem; color: var(--ink);
+    cursor: pointer; box-shadow: 0 4px 0 #e0a800; margin-left: 28px; transition: transform 0.12s;
+  }
+  .cart-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #e0a800; }
+
+  .hero { position: relative; z-index: 1; text-align: center; padding: 6vw 6vw 4vw; }
+  .hero .badge {
+    display: inline-block; background: var(--teal); color: #fff; padding: 8px 22px;
+    border-radius: 50px; font-weight: 700; font-size: 0.9rem; transform: rotate(-2deg);
+    box-shadow: 0 4px 0 #2ba59d;
+  }
+  .hero h1 { font-size: clamp(2.6rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; margin: 24px 0 18px; }
+  .hero h1 .w1{color:var(--pink)} .hero h1 .w2{color:var(--purple)} .hero h1 .w3{color:var(--orange)}
+  .hero p { font-size: 1.2rem; color: #7a6e8c; max-width: 500px; margin: 0 auto; }
+  .hero .btn {
+    display: inline-block; margin-top: 32px; background: var(--pink); color: #fff;
+    text-decoration: none; padding: 16px 40px; border-radius: 50px; font-weight: 700;
+    font-size: 1.1rem; box-shadow: 0 6px 0 #d94d8a; transition: transform 0.15s;
+  }
+  .hero .btn:hover { transform: translateY(-3px); }
+  .hero .btn:active { transform: translateY(2px); box-shadow: 0 3px 0 #d94d8a; }
+
+  .grid {
+    position: relative; z-index: 1; display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 34px; padding: 50px 6vw 90px;
+  }
+  .art { background: var(--card); border-radius: 26px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(155,109,255,0.12); transition: transform 0.25s; }
+  .art:nth-child(odd){ transform: rotate(-1deg); }
+  .art:nth-child(even){ transform: rotate(1deg); }
+  .art:hover { transform: rotate(0deg) translateY(-8px); }
+  .frame { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 5rem; }
+  .c1{background:linear-gradient(135deg,#ffd86b,#ff8a4c)}
+  .c2{background:linear-gradient(135deg,#7ee8e0,#3ec9c0)}
+  .c3{background:linear-gradient(135deg,#ffb3d1,#ff6fab)}
+  .c4{background:linear-gradient(135deg,#c4a8ff,#9b6dff)}
+  .c5{background:linear-gradient(135deg,#aee87e,#5fb83d)}
+  .c6{background:linear-gradient(135deg,#9ad8ff,#5aa8ff)}
+  .info { padding: 20px 22px 24px; }
+  .info h3 { font-size: 1.5rem; font-weight: 700; }
+  .info .meta { color: #9a8eb0; font-size: 0.88rem; margin: 2px 0 14px; }
+  .info .row { display: flex; justify-content: space-between; align-items: center; }
+  .price { font-family: 'Baloo 2'; font-size: 1.5rem; font-weight: 800; color: var(--purple); }
+  .add {
+    background: var(--teal); border: none; color: #fff; padding: 10px 20px; border-radius: 50px;
+    font-family: 'Baloo 2'; font-weight: 700; font-size: 0.95rem; cursor: pointer;
+    box-shadow: 0 4px 0 #2ba59d; transition: transform 0.12s;
+  }
+  .add:hover { transform: translateY(-2px); }
+  .add:active { transform: translateY(2px); box-shadow: 0 2px 0 #2ba59d; }
+
+  footer { position: relative; z-index: 1; text-align: center; padding: 50px 6vw 70px; color: #9a8eb0; }
+  footer .logo { font-size: 1.6rem; margin-bottom: 14px; color: var(--pink); }
+
+  /* Cart drawer */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(58,46,79,0.45); z-index: 90;
+    opacity: 0; visibility: hidden; transition: 0.3s;
+  }
+  .overlay.open { opacity: 1; visibility: visible; }
+  .drawer {
+    position: fixed; top: 0; right: 0; height: 100%; width: 380px; max-width: 90vw;
+    background: var(--bg); z-index: 100; transform: translateX(100%); transition: 0.35s;
+    display: flex; flex-direction: column; box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+  }
+  .drawer.open { transform: translateX(0); }
+  .drawer-head { padding: 24px; display: flex; justify-content: space-between; align-items: center; }
+  .drawer-head h2 { font-size: 1.6rem; color: var(--pink); }
+  .close { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--ink); line-height: 1; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 0 24px; }
+  .cart-row { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px dashed #e3d9c8; }
+  .cart-row .ci-emoji { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; flex-shrink: 0; }
+  .cart-row .ci-info { flex: 1; }
+  .cart-row .ci-info h4 { font-family: 'Baloo 2'; font-size: 1.1rem; font-weight: 700; }
+  .cart-row .ci-info span { color: var(--purple); font-weight: 700; }
+  .cart-row .ci-remove { background: #ffe0ea; border: none; color: var(--pink); width: 30px; height: 30px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; }
+  .empty { text-align: center; color: #9a8eb0; padding: 50px 20px; }
+  .drawer-foot { padding: 24px; border-top: 1px solid #e3d9c8; }
+  .total-row { display: flex; justify-content: space-between; font-family: 'Baloo 2'; font-weight: 800; font-size: 1.4rem; margin-bottom: 18px; }
+  .total-row .t-sum { color: var(--purple); }
+  .wa-btn {
+    width: 100%; background: #25D366; border: none; color: #fff; padding: 16px; border-radius: 50px;
+    font-family: 'Baloo 2'; font-weight: 700; font-size: 1.1rem; cursor: pointer;
+    box-shadow: 0 5px 0 #1da851; display: flex; align-items: center; justify-content: center; gap: 10px;
+    transition: transform 0.12s;
+  }
+  .wa-btn:hover { transform: translateY(-2px); }
+  .wa-btn:active { transform: translateY(2px); box-shadow: 0 3px 0 #1da851; }
+  .wa-btn:disabled { background: #c9c3bb; box-shadow: 0 5px 0 #aaa49c; cursor: not-allowed; }
+  .badge-count {
+    background: var(--pink); color:#fff; border-radius: 50px; padding: 1px 8px; font-size: 0.85rem; margin-left: 4px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span>P</span><span>i</span><span>r</span><span>o</span>smani</div>
+  <nav>
+    <a href="#gallery">გალერეა</a>
+    <a href="#">ჩვენ შესახებ</a>
+    <button class="cart-btn" id="openCart">🛒 კალათა<span class="badge-count" id="count">0</span></button>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="badge">✨ ხელნაკეთი ნამუშევრები</span>
+  <h1><span class="w1">ფერადი</span> <span class="w2">ნახატები</span> <span class="w3">პატარებისთვის</span></h1>
+  <p>მხიარული, ნათელი ნამუშევრები, რომლებიც ბავშვის ოთახს ზღაპრად აქცევს! 🎨</p>
+  <a href="#gallery" class="btn">ნახე ყველა ნახატი</a>
+</section>
+
+<div class="grid" id="gallery"></div>
+
+<footer>
+  <div class="logo">PirosmaniArt</div>
+  <p>© 2026 · ფერადი ნამუშევრები პატარებისთვის · info@example.ge 🌈</p>
+</footer>
+
+<!-- Cart drawer -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>🛒 შენი კალათა</h2>
+    <button class="close" id="closeCart">×</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="total-row"><span>ჯამი:</span><span class="t-sum" id="total">₾0</span></div>
+    <button class="wa-btn" id="checkout">📲 შეკვეთა WhatsApp-ით</button>
+  </div>
+</aside>
+
+<script>
+  // ====== აქ ჩაწერე შენი WhatsApp ნომერი (ქვეყნის კოდით, + და სიმბოლოების გარეშე) ======
+  const WHATSAPP_NUMBER = "995599180140";
+  // ==============================================================================
+
+  const products = [
+    { id:1, name:"მზიანი ლომი",        meta:"აკრილი · 30×30 სმ", price:120, emoji:"🦁", cls:"c1" },
+    { id:2, name:"ცისფერი ვეშაპი",      meta:"აკვარელი · 40×30 სმ", price:95,  emoji:"🐳", cls:"c2" },
+    { id:3, name:"ვარდისფერი ერთრქა",   meta:"აკრილი · 30×40 სმ", price:140, emoji:"🦄", cls:"c3" },
+    { id:4, name:"კოსმოსური მოგზაურობა", meta:"აკრილი · 40×40 სმ", price:160, emoji:"🚀", cls:"c4" },
+    { id:5, name:"მწვანე ბაყაყი",       meta:"აკვარელი · 25×25 სმ", price:80,  emoji:"🐸", cls:"c5" },
+    { id:6, name:"ზღვის სამყარო",       meta:"აკრილი · 35×30 სმ", price:110, emoji:"🐠", cls:"c6" },
+  ];
+
+  const cart = {}; // id -> qty
+
+  // render gallery
+  const grid = document.getElementById('gallery');
+  products.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'art';
+    el.innerHTML = `
+      <div class="frame ${p.cls}">${p.emoji}</div>
+      <div class="info">
+        <h3>${p.name}</h3>
+        <div class="meta">${p.meta}</div>
+        <div class="row"><span class="price">₾${p.price}</span>
+        <button class="add" data-id="${p.id}">კალათაში</button></div>
+      </div>`;
+    grid.appendChild(el);
+  });
+
+  const overlay = document.getElementById('overlay');
+  const drawer = document.getElementById('drawer');
+  const openCart = () => { overlay.classList.add('open'); drawer.classList.add('open'); };
+  const closeCart = () => { overlay.classList.remove('open'); drawer.classList.remove('open'); };
+  document.getElementById('openCart').onclick = openCart;
+  document.getElementById('closeCart').onclick = closeCart;
+  overlay.onclick = closeCart;
+
+  function addToCart(id){ cart[id] = (cart[id]||0)+1; render(); }
+  function removeFromCart(id){ if(cart[id]){ cart[id]--; if(cart[id]<=0) delete cart[id]; } render(); }
+
+  document.querySelectorAll('.add').forEach(btn => {
+    btn.onclick = () => {
+      addToCart(+btn.dataset.id);
+      btn.textContent = '✓ დაემატა!';
+      setTimeout(()=> btn.textContent='კალათაში', 1000);
+    };
+  });
+
+  function render(){
+    const ids = Object.keys(cart);
+    const count = ids.reduce((s,id)=> s+cart[id], 0);
+    const total = ids.reduce((s,id)=> s + products.find(p=>p.id==id).price * cart[id], 0);
+    document.getElementById('count').textContent = count;
+    document.getElementById('total').textContent = '₾'+total;
+
+    const box = document.getElementById('cartItems');
+    if(ids.length === 0){
+      box.innerHTML = '<div class="empty">კალათა ცარიელია 🎨<br>აირჩიე ნახატი გალერეადან!</div>';
+    } else {
+      box.innerHTML = ids.map(id => {
+        const p = products.find(x=>x.id==id);
+        return `<div class="cart-row">
+          <div class="ci-emoji ${p.cls}">${p.emoji}</div>
+          <div class="ci-info"><h4>${p.name}</h4>
+          <span>₾${p.price} × ${cart[id]} = ₾${p.price*cart[id]}</span></div>
+          <button class="ci-remove" data-rid="${id}">−</button>
+        </div>`;
+      }).join('');
+      box.querySelectorAll('.ci-remove').forEach(b => b.onclick = () => removeFromCart(+b.dataset.rid));
+    }
+    document.getElementById('checkout').disabled = ids.length === 0;
+  }
+
+  document.getElementById('checkout').onclick = () => {
+    const ids = Object.keys(cart);
+    if(ids.length === 0) return;
+    let msg = "გამარჯობა! 🎨 მინდა შემდეგი ნახატ(ებ)ის შეკვეთა:%0A%0A";
+    let total = 0;
+    ids.forEach(id => {
+      const p = products.find(x=>x.id==id);
+      const sub = p.price * cart[id];
+      total += sub;
+      msg += `• ${p.name} (₾${p.price} × ${cart[id]}) = ₾${sub}%0A`;
+    });
+    msg += `%0Aჯამი: ₾${total}%0A%0Aჩემი სახელი: %0Aტელეფონი: `;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+  };
+
+  render();
+</script>
+
+</body>
+</html>
