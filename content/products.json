@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "name": "მზიანი ლომი",
+      "image": "https://picsum.photos/seed/lion/600/600",
+      "price": 120,
+      "size": "30×30 სმ",
+      "technique": "აკრილი"
+    },
+    {
+      "name": "ცისფერი ვეშაპი",
+      "image": "https://picsum.photos/seed/whale/600/600",
+      "price": 95,
+      "size": "40×30 სმ",
+      "technique": "აკვარელი"
+    },
+    {
+      "name": "ვარდისფერი ერთრქა",
+      "image": "https://picsum.photos/seed/unicorn/600/600",
+      "price": 140,
+      "size": "30×40 სმ",
+      "technique": "აკრილი"
+    },
+    {
+      "name": "კოსმოსური მოგზაურობა",
+      "image": "https://picsum.photos/seed/space/600/600",
+      "price": 160,
+      "size": "40×40 სმ",
+      "technique": "აკრილი"
+    },
+    {
+      "name": "მწვანე ბაყაყი",
+      "image": "https://picsum.photos/seed/frog/600/600",
+      "price": 80,
+      "size": "25×25 სმ",
+      "technique": "აკვარელი"
+    },
+    {
+      "name": "ზღვის სამყარო",
+      "image": "https://picsum.photos/seed/sea/600/600",
+      "price": 110,
+      "size": "35×30 სმ",
+      "technique": "აკრილი"
+    }
+  ]
+}

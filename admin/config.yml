@@ -1,0 +1,36 @@
+backend:
+  name: github
+  repo: otar1983/pirosmani-art
+  branch: main
+  # ⬇️ Cloudflare auth worker-ის მისამართი (ნაბიჯ 6-ზე შევქმნით)
+  base_url: https://AUTH-WORKER-SUBDOMAIN.workers.dev
+
+# ენა ადმინ-პანელში
+locale: ka
+
+# ფოტოები აქ აიტვირთება
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: products
+    label: "ნახატები"
+    label_singular: "ნახატი"
+    files:
+      - name: catalog
+        label: "ნახატების კატალოგი"
+        file: "content/products.json"
+        format: json
+        description: "დაამატე, შეცვალე ან წაშალე ნახატები. ცვლილებები ავტომატურად აისახება საიტზე."
+        fields:
+          - label: "ნახატები"
+            name: items
+            label_singular: "ნახატი"
+            widget: list
+            summary: "{{fields.name}} — ₾{{fields.price}}"
+            fields:
+              - { label: "სახელი", name: name, widget: string }
+              - { label: "ფოტო", name: image, widget: image, media_library: { config: { max_file_size: 5242880 } } }
+              - { label: "ფასი (₾)", name: price, widget: number, value_type: int, min: 0 }
+              - { label: "ზომა", name: size, widget: string, hint: "მაგ: 30×30 სმ", required: false }
+              - { label: "ტექნიკა", name: technique, widget: string, hint: "მაგ: აკრილი, აკვარელი", required: false }
